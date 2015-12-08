@@ -4,13 +4,13 @@
 
     return new Greetr.init(firstName, lastName, language);
 
-  }
+  };
 
-  var supportLangs = ['es', 'en'];
+  var supportedLangs = ['es', 'en'];
 
   var greetings = {
-      en: 'Hello',
-      es: 'Hola'
+    en: 'Hello',
+    es: 'Hola'
   };
 
   var formalGreetings = {
@@ -48,13 +48,27 @@
       if (formal) {
         msg = this.formalGreeting();
       } else {
-        msg = this.greeting;
+        msg = this.greeting();
       }
 
       if (console) {
         console.log(msg);
       }
 
+      return this;
+    },
+
+    log: function () {
+      if(console) {
+        console.log(
+          logMessages[this.language] + ': ' + this.fullName());
+      }
+      return this;
+    },
+
+    setLang: function(lang){
+      this.language = lang;
+      this.validate();
       return this;
     }
 
@@ -67,7 +81,7 @@
     self.lastName = lastName  || "";
     self.language = language || "en";
 
-  }
+  };
 
   Greetr.init.prototype = Greetr.prototype;
 
