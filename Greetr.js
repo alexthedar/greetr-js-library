@@ -1,4 +1,5 @@
-(function(global, $){
+//semi colon added as safety to complete any missing semicolons from code previously added on
+;(function(global, $){
 
   //'new' object
   var Greetr = function(firstName, lastName, language) {
@@ -88,15 +89,15 @@
       this.validate();
       //make chainable
       return this;
-    }
+    },
 
     HTMLGreeting: function(selector, formal) {
       if(!$) {
-        throw: 'jQuery not loaded';
+        throw 'jQuery not loaded';
       }
 
       if(!selector){
-        throw: 'MIssing jQuery selector';
+        throw 'Missing jQuery selector';
       }
 
       //determine the message
@@ -121,11 +122,13 @@
     self.firstName = firstName || "";
     self.lastName = lastName  || "";
     self.language = language || "en";
+    //validate language supported or not
+    self.validate();
 
   };
   //trick borrowed from jQuery so we dont have to use the new keyword
   Greetr.init.prototype = Greetr.prototype;
-  //attach our greetr to the global object and provide a shorthand $G for ease 
+  //attach our greetr to the global object and provide a shorthand $G for ease
   global.Greetr = global.G$ = Greetr;
 
   return Greetr;
